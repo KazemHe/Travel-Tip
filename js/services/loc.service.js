@@ -17,3 +17,20 @@ function getLocs() {
 }
 
 
+
+
+
+
+function _creatPlace(name, lat, lng) {
+    return {
+        id: _makeId(),
+        lat,
+        lng,
+        name,
+        creatAt: getDate(),
+        updatedAt: getDate(),
+    }
+
+
+
+}
