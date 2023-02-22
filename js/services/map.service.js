@@ -1,8 +1,11 @@
+import { locService } from "./loc.service.js"
+
 export const mapService = {
     initMap,
     addMarker,
     panTo
 }
+
 
 
 // Var that is used throughout this Module (not global)
@@ -19,6 +22,10 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 zoom: 15
             })
             console.log('Map!', gMap)
+            gMap.addListener("click", (mapsMouseEvent) => {
+                locService.addLocation(mapsMouseEvent.latLng.toJSON())
+                console.log(mapsMouseEvent.latLng.toJSON())
+              });
         })
 }
 
