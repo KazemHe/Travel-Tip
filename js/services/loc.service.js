@@ -1,15 +1,15 @@
 
-import{storageService} from './async-storage.service.js'
+import { storageService } from './async-storage.service.js'
 
 export const locService = {
     getLocs,
-    addLocation,
+    addPlace,
 }
 
-const STORAGE_KEY = 'locationsDB'
+const STORAGE_KEY = 'placessDB'
 
 const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
+    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 
@@ -26,14 +26,14 @@ function getLocs() {
 
 
 
-function _creatPlace(name, lat, lng) {
-    return {
-        id: _makeId(),
+function _creatPlace(lat, lng, name) {
+    return  {
+        // id: _makeId(),
         lat,
         lng,
         name,
-        creatAt: getDate(),
-        updatedAt: getDate(),
+        creatAt: Date.now(),
+        // updatedAt: getDate(),
     }
 
 
@@ -41,9 +41,10 @@ function _creatPlace(name, lat, lng) {
 }
 
 
-function addLocation(latlng){
+function addPlace({ lat, lng }, name) {
 
-//   const location= _creatPlace(name, lat, lng)
+    const place = _creatPlace(lat, lng, name)
 
-  storageService.post(STORAGE_KEY,latlng)
+    locs.push(place)
+    storageService.post(STORAGE_KEY, place)
 }

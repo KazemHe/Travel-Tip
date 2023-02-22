@@ -23,7 +23,8 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
             console.log('Map!', gMap)
             gMap.addListener("click", (mapsMouseEvent) => {
-                locService.addLocation(mapsMouseEvent.latLng.toJSON())
+                 const locationName=prompt('enter name')
+                locService.addPlace(mapsMouseEvent.latLng.toJSON(),locationName)
                 console.log(mapsMouseEvent.latLng.toJSON())
               });
         })
